@@ -1,19 +1,9 @@
 from django.db import models
 from django.utils.encoding import python_2_unicode_compatible # only if you need to support Python 2
-import random
-import string
-
-
-def code_generator (size=6 ,chars=string.ascii_lowercase + string.digits):
-	return  ''.join(random.choice(chars) for _ in range (size))
-	'''
-	new_code = ''
-	for _ in range (size): # _ sirve para variable temp q no se va a usar
-		new_code += randowm.choice(chars)
-	return new_code
-	'''
+from .utils import code_generator
 
 # Create your models here.
+
 @python_2_unicode_compatible  # only if you need to support Python 2
 class KirrURL(models.Model):
 	url 		= models.CharField(max_length=220, )
@@ -28,6 +18,11 @@ class KirrURL(models.Model):
 		print('something')
 		self.shortcode = code_generator()
 		super(KirrURL,self).save(*args, **kwargs)
+		'''
+		obj = self
+		obj.shortcode = code_generator()
+		obj.save()
+		'''
 
 	def __str__(self):
 		return str(self.url)
