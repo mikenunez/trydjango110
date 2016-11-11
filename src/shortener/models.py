@@ -1,9 +1,10 @@
 from django.db import models
 from django.utils.encoding import python_2_unicode_compatible # only if you need to support Python 2
 import random
+import string
 
 
-def code_generator (size=6 ,chars='abcdefghijklmnopqrstuvwxyz'):
+def code_generator (size=6 ,chars=string.ascii_lowercase + string.digits):
 	return  ''.join(random.choice(chars) for _ in range (size))
 	'''
 	new_code = ''
